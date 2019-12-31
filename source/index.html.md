@@ -9,6 +9,7 @@ toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
+  - queueDishes
   - errors
 
 search: true
@@ -73,7 +74,6 @@ You must replace <code>{{token_here}}</code> with your personal API Token.
 > GET - https://node.chefsurf.io/open-kitchen
 
 ```javascript
-
 import {
   HttpClient
 } from '@angular/common/http';
@@ -202,107 +202,80 @@ Parameter | Default | Description
 include_cats | false | If set to true, the result will also include cats.
 available | true | If set to false, the result will include kittens that have already been adopted. -->
 
-## Get a Specific Kitten
+## Assign Dishes
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
+> POST - https://node.chefsurf.io/open-kitchen/assign/dishes
 
 ```javascript
-const kittn = require('kittn');
+import {
+  HttpClient
+} from '@angular/common/http';
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+const path = 'https://node.chefsurf.io';
+
+constructor(private http: HttpClient) {
+}
+
+assignDishes(params) {
+  return this.http.post(`${path}/api/open-kitchen/assign/dishes`, {
+    params, 
+    headers: {
+      Authorization: `JWT ${jwt_token}`
+    }
+  });
+}
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "data": [
+        {
+            "ingredients": {
+                "pending": [],
+                "added": [],
+                "failed": [],
+                "additions": []
+            },
+            "dishName": "Elote Bowl",
+            "priority": "normal",
+            "status": "queue",
+            "sortOrder": 0,
+            "simplifiedId": "3d79-3d7c",
+            "cookingTime": 0,
+            "_id": "5e09a4f5ab7c8b2691551468",
+            "deleted": false,
+            "orderItem": "5e091e65f79a1c3227d93d7c",
+            "customer": "5e091e65f79a1c3227d93d73",
+            "restaurant": "5dd9790212256f10e83bb934",
+            "owner": "5dd9790112256f10e83bb932",
+            "updatedAt": "2019-12-30T07:19:17.541Z",
+            "createdAt": "2019-12-30T07:19:17.541Z",
+            "__v": 0
+        },
+        ...
+    ]
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint assign dishes to the queue. The queue contains dishes splitted individually so the Raspberry Pi pulls those and assign them to the woks.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
+<aside class="warning">This endpoint will not longer be supported soon, it will be replaced with another endpoint.</aside>
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`GET https://node.chefsurf.io/api/open-kitchen/assign/dishes`
 
 ### URL Parameters
 
+The parameters are applied to the OrderItem's properties.
+
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to delete
+where_date | apply a date condition to the query. i.e <strong>2019-12-22</strong>
+where_time | apply a time condition to the query i.e <strong>13:00:00</strong>
+where_status | apply a status condition to the query i.e <strong>placed</strong>
+where_priority | apply a priority condition to the query i.e <strong>urgent</strong>
+where_customer | apply a customer._id condition to the query i.e <strong>5e091e65f79a1c3227d93d73</strong>
 
