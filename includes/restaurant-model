@@ -1,0 +1,68 @@
+<h2 id='restaurant'>Restaurant</h2>
+<blockquote>
+<p>Schema definition</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">RestaurantSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
+    <span class="na">owner</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nx">mongoTypes</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span>
+        <span class="na">ref</span><span class="p">:</span> <span class="s1">'Owner'</span><span class="p">,</span>
+        <span class="na">required</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">index</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="na">user</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nx">mongoTypes</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span>
+        <span class="na">ref</span><span class="p">:</span> <span class="s1">'User'</span><span class="p">,</span>
+        <span class="na">required</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">index</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="na">chefs</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nx">mongoTypes</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span>
+        <span class="na">ref</span><span class="p">:</span> <span class="s1">'Chef'</span>
+    <span class="p">}],</span>
+    <span class="na">logo</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+        <span class="na">required</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="na">default</span><span class="p">:</span> <span class="kc">null</span>
+    <span class="p">},</span>
+    <span class="na">background</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+        <span class="na">required</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="na">default</span><span class="p">:</span> <span class="kc">null</span>
+    <span class="p">},</span>
+    <span class="na">location</span><span class="p">:</span> <span class="p">{},</span>
+    <span class="na">name</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nx">mongoTypes</span><span class="p">.</span><span class="nb">String</span><span class="p">,</span>
+        <span class="na">default</span><span class="p">:</span> <span class="kc">null</span>
+    <span class="p">},</span>
+    <span class="na">automatedKitchen</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nb">Boolean</span><span class="p">,</span>
+        <span class="na">required</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="na">default</span><span class="p">:</span> <span class="kc">false</span>
+    <span class="p">},</span>
+    <span class="na">deliveryAvailable</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nb">Boolean</span><span class="p">,</span>
+        <span class="na">default</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">required</span><span class="p">:</span> <span class="kc">false</span>
+    <span class="p">},</span>
+    <span class="na">pickUpAvailable</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nb">Boolean</span><span class="p">,</span>
+        <span class="na">default</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">required</span><span class="p">:</span> <span class="kc">false</span>
+    <span class="p">},</span>
+    <span class="na">cashPaymentAvailable</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nb">Boolean</span><span class="p">,</span>
+        <span class="na">default</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">required</span><span class="p">:</span> <span class="kc">false</span>
+    <span class="p">},</span>
+    <span class="na">creditCardPaymentAvailable</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nb">Boolean</span><span class="p">,</span>
+        <span class="na">default</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">required</span><span class="p">:</span> <span class="kc">false</span>
+    <span class="p">},</span>
+    <span class="na">domain</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nx">mongoTypes</span><span class="p">.</span><span class="nb">String</span><span class="p">,</span>
+        <span class="na">required</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">unique</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre>

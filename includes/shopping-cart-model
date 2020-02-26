@@ -1,0 +1,75 @@
+<h2 id='shopping-cart'>Shopping Cart</h2>
+<blockquote>
+<p>Schema definition</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">ShoppingCartSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
+    <span class="na">owner</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span>
+        <span class="na">ref</span><span class="p">:</span> <span class="s1">'Owner'</span><span class="p">,</span>
+        <span class="na">required</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="na">user</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span>
+        <span class="na">ref</span><span class="p">:</span> <span class="s1">'User'</span><span class="p">,</span>
+        <span class="na">required</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="na">restaurant</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span>
+        <span class="na">ref</span><span class="p">:</span> <span class="s1">'Restaurant'</span><span class="p">,</span>
+        <span class="na">required</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="na">completed</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nb">Boolean</span><span class="p">,</span>
+        <span class="na">default</span><span class="p">:</span> <span class="kc">false</span>
+    <span class="p">},</span>
+    <span class="na">order</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span>
+        <span class="na">ref</span><span class="p">:</span> <span class="s1">'Order'</span><span class="p">,</span>
+        <span class="na">required</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="na">default</span><span class="p">:</span> <span class="kc">null</span>
+    <span class="p">},</span>
+    <span class="na">startDay</span><span class="p">:</span> <span class="p">{</span> <span class="c1">//will be removed</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nb">Number</span><span class="p">,</span>
+        <span class="na">required</span><span class="p">:</span> <span class="kc">false</span>
+    <span class="p">},</span>
+    <span class="na">endDay</span><span class="p">:</span> <span class="p">{</span> <span class="c1">//will be removed</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nb">Number</span><span class="p">,</span>
+        <span class="na">required</span><span class="p">:</span> <span class="kc">false</span>
+    <span class="p">},</span>
+    <span class="na">dates</span><span class="p">:</span> <span class="p">[],</span> <span class="c1">//will be removed</span>
+    <span class="na">shoppingCartItems</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span>
+        <span class="na">ref</span><span class="p">:</span> <span class="s1">'ShoppingCartItem'</span>
+    <span class="p">}],</span>
+    <span class="na">coupon</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">_id</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">type</span><span class="p">:</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">,</span>
+            <span class="na">ref</span><span class="p">:</span> <span class="s1">'Coupon'</span>
+        <span class="p">},</span>
+        <span class="na">reference</span><span class="p">:</span> <span class="p">{}</span>
+    <span class="p">},</span>
+    <span class="na">creditsUsed</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nb">Number</span><span class="p">,</span>
+        <span class="na">default</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">},</span>
+    <span class="na">subTotal</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nb">Number</span><span class="p">,</span>
+        <span class="na">default</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="na">required</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="na">discount</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nb">Number</span><span class="p">,</span>
+        <span class="na">default</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">},</span>
+    <span class="na">taxes</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nb">Number</span><span class="p">,</span>
+        <span class="na">default</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="na">required</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="na">total</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nb">Number</span><span class="p">,</span>
+        <span class="na">default</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="na">required</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">},</span>
+<span class="p">});</span>
+</code></pre>
