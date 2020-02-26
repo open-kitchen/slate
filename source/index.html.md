@@ -5,21 +5,57 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - javascript (Angular)
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  # - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='https://github.com/lord/slate'>Powered by Slate</a>
 
 includes:
-  - queueDishes
+  - restaurants
+  - inventories
+  - inventory-items
+  - products
+  - dishes
+  - woks
+  - dispensers
+  - sauce-bags
+  - shopping-cart
+  - query-helpers
   - errors
-
+  - models
+  - chef-model
+  - client-model
+  - credit-model
+  - coupon-model
+  - dish-model
+  - dispenser-model
+  - inventory-model
+  - inventory-item-model
+  - kushki-card-model
+  - kushki-ticket-model
+  - order-model
+  - order-item-model
+  - product-model
+  - restaurant-model
+  - sauce-bag-model
+  - shopping-cart-model
+  - shopping-cart-item-model
+  - user-model
+  - wok-model
 search: true
 ---
 
 # Introduction
-
 Welcome to the ChefSurf & OpenKitchen API. You can use our API documentation to access all our endpoints that are being used across the ChefSurf | Satee | OpenKitchen applications, which can get information on all the products, orders, dishes in the queue, etc.
 
 At this point we will only write documentation for JavasCript and then we will add documentation for Python and PHP. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+
+<img src="https://storage.googleapis.com/cs-bucket-space/assets/logo/new/logo_caviar.svg"
+     alt="ChefSurf logo"
+     style="width: 300px; float: left; margin-top: 38px;" />
+     
+<img src="https://storage.googleapis.com/openkitchen_cdn/satee/logosatee.png"
+     alt="Satee logo"
+     style="width: 200px; float: left; margin-top: 10px;" />
+
 
 <!-- This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation. -->
 
