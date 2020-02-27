@@ -9,21 +9,23 @@ toc_footers:
   - <a href='https://github.com/lord/slate'>Powered by Slate</a>
 
 includes:
-  - restaurants
+  - client-model
+  - credit-model
+  - dishes
+  - dispensers
   - inventories
   - inventory-items
+  - orders
+  - order-items
   - products
-  - dishes
-  - woks
-  - dispensers
+  - restaurants
   - sauce-bags
   - shopping-cart
+  - woks
   - query-helpers
   - errors
   - models
   - chef-model
-  - client-model
-  - credit-model
   - coupon-model
   - dish-model
   - dispenser-model

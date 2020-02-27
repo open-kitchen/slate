@@ -44,16 +44,6 @@ let OrderSchema = new mongoose.Schema({
         enum: ['delivery', 'eat_here', 'to_go'],
         default: 'eat_here'
     },
-    delivery: {
-        type: Boolean,
-        default: false,
-        required: false
-    },
-    pickup: {
-        type: Boolean,
-        default: false,
-        required: false
-    },
     clientLocation: {},
     deliveryFee: {
         type: Number,
@@ -113,8 +103,8 @@ let OrderSchema = new mongoose.Schema({
     },
     deliveryStatus: {
         type: String,
-        enum: ['pending', 'delivering', 'at_address', 'delivered', 'returned', 'user_not_showed_up', 'at_front'],
-        default: 'pending',
+        enum: ['pending', 'delivering', 'at_address', 'delivered', 'returned', 'user_not_showed_up', 'at_front', 'none'],
+        default: 'none',
         required: true
     },
     // selectedTime: {
@@ -124,7 +114,7 @@ let OrderSchema = new mongoose.Schema({
     // selectedDate: {
     //     type: mongoose.Schema.Types.String,
     // },
-    payUResponses: [],
+    payUResponses: [], //@deprecated
     coupon: {
         _id: {
             type: mongoose.Schema.Types.ObjectId,
